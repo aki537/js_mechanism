@@ -2,15 +2,24 @@
  * 問題１：
  * 以下のコンソールにはどのような値が表示されるでしょうか？
  */
-// console.log("0 == false", 0 == false);
-// console.log("0 === false", 0 === false);
-// console.log('"false" == false', "false" == false);
-// console.log('"0" == 0', "0" == 0);
-// console.log('Boolean("0") === false', Boolean("0") === false);
-// console.log('Boolean(0) === false', Boolean(0) === false);
-// console.log('!Boolean(0) === false', !Boolean(0) === false);
-// console.log('-1 == false', -1 == false);
-// console.log('!10 === false', !10 === false);
+console.log("0 == false", 0 == false);
+//   0 == false true ◯
+console.log("0 === false", 0 === false);
+//   0 === false true ×　型が変わってくるので正解はfalse
+console.log('"false" == false', "false" == false);
+//   "false" = false true　× 文字列"false"はtruthyな値なのでfalse
+console.log('"0" == 0', "0" == 0);
+//   "0" == 0 true ◯
+console.log('Boolean("0") === false', Boolean("0") === false);
+//   Boolean("0") === false false　◯
+console.log('Boolean(0) === false', Boolean(0) === false);
+//   Boolean(0) === false true　◯
+console.log('!Boolean(0) === false', !Boolean(0) === false);
+//   !Boolean(0) === false  false　◯
+console.log('-1 == false', -1 == false);
+//   -1 == false false　◯
+console.log('!10 === false', !10 === false);
+//   !10 === false true  ◯
 
 /**
  * 問題２：
@@ -20,13 +29,23 @@
  * 以下の関数fnの初期化を適切に書き直してください。
  * ※aには0以上の整数値が渡ってくるものとします。
  */
-let a = 1;
+let a = 0;
+
+// function fn(num) {
+//     num = num || -1;
+//     console.log(num);
+// }
+// fn(a);
 
 function fn(num) {
-    num = num || -1;
+    if(num === undefined || num === null) {
+        num = -1;
+    }
     console.log(num);
 }
 fn(a);
+
+
 
 
 /**
@@ -39,3 +58,22 @@ fn(a);
  * greeting("Bob"); -> 出力結果："hello, Bob"
  *
  */
+
+// 自分の回答
+// function greeting(name, a) {
+//     if(a === false){
+//       console.log(`hello, ${name}`);
+//     }else{
+//       console.log(`${a}, ${name}`);
+//     }
+// }
+// greeting("Bob")
+
+// 答え
+function greeting(name, hi) {
+    hi = hi || 'hello';
+    console.log(`${hi}, ${name}`);
+}
+
+greeting("Bob");
+greeting("Bob", "hi");
