@@ -8,3 +8,10 @@ Object.prototype.hello = function() {
 }
 
 const bob = new Person('Bob', 18);
+// true
+const result = bob.hasOwnProperty('name');
+// false
+// const result = bob.hasOwnProperty('hello');
+console.log(result);
+
+console.log('name' in bob);
