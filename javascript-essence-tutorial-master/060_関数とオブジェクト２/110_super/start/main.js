@@ -27,17 +27,27 @@ class Japanese extends Person {
 
 const taro = new Japanese('Taro', 23, 'Male');
 console.log(taro);
-taro.bye();
+taro.hello();
 
-// const american = {
-//     hello() {
-//         console.log('hello ' + this.name);
-//     }
-// }
+const american = {
+    hello() {
+        super.hello();
+        // console.log('hello ' + this.name);
+    }
+}
 
-// const bob = {
-//     name: 'Bob',
-//     hello() {
-//         super.hello();
-//     }
-// }
+const bob = {
+    name: 'Bob',
+    // hello() {
+    //     console.log('hello ' + this.name);
+    //     // super.hello();
+    // }
+}
+// 適用されない
+bob.bye = function() {
+    super.hello();
+}
+
+Object.setPrototypeOf(bob, american);
+
+bob.hello();
