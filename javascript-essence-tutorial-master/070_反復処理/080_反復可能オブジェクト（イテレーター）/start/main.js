@@ -4,7 +4,26 @@ const obj = {
 	prop3: 'value3'
 }
 
-const items = Object.entries(obj);
-for (let item of items) {
-	console.log(item);
+// const items = Object.entries(obj);
+// for (let item of items) {
+// 	console.log(item);
+// }
+
+Object.prototype[Symbol.iterator] = function() {
+	const keys = Object.keys(this);
+	let i = 0;
+	let _this = this;
+	return {
+		next() {
+			let key = keys[i++];
+			return {
+				value: [key, _this[key]],
+				done: i > keys.length
+			}
+		}
+	}
+}
+
+for (let [k, v] of items) {
+	console.log(k, v);
 }
